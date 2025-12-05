@@ -1,2 +1,4 @@
-Django>=4.2,<5
-gunicorn>=21.2.0
+dj-database-url==3.0.1
+Django==4.2.27
+gunicorn==23.0.0
+psycopg2-binary==2.9.11
