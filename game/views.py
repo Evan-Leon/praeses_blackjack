@@ -43,7 +43,7 @@ def index(request):
     return render(request, 'game.html', context)
  
  
-@require_http_methods(["POST"])
+@require_http_methods(["GET","POST"])
 def new_game(request):
     """Start a new game."""
     game = BlackjackGame()
