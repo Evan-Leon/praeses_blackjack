@@ -1,6 +1,7 @@
 # Praeses Blackjack
  
 **Developer:** Evan Leon
+
 **LiveLink:** [Praeses Blackjack](https://praeses-blackjack-5101a346b252.herokuapp.com/)
 ---
  
