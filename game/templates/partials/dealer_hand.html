@@ -1,0 +1,26 @@
+{% load static %}
+
+<div class="hand-section dealer-section">
+    <h2>Dealer's Hand</h2>
+    <div class="cards">
+        {% if game_state.dealer_showing %}
+        <!-- Show only first card before dealer's turn -->
+        {% with card=game_state.dealer_showing.card %}
+        {% include 'partials/card.html' %}
+        {% endwith %}
+        {% for i in "x"|rjust:game_state.dealer_showing.hidden_cards %}
+        <div class="card hidden">
+            <img src="{% static 'game/images/praeses_logo.png' %}" alt="Card Back" class="card-back-logo">
+        </div>
+        {% endfor %}
+        {% else %}
+        <!-- Show all cards after dealer's turn -->
+        {% for card in game_state.dealer_hand.cards %}
+        {% include 'partials/card.html' %}
+        {% endfor %}
+        {% endif %}
+    </div>
+    {% if game_state.dealer_turn %}
+    <p class="hand-value">Value: {{ game_state.dealer_hand.value }}</p>
+    {% endif %}
+</div>

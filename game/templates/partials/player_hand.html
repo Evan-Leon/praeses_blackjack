@@ -1,0 +1,26 @@
+<div class="hand-section player-section">
+    <h2>
+        Your Hand
+        {% if game_state.split_hand %}(Main){% endif %}
+        {% if game_state.active_hand == 'main' and game_state.split_hand %} - Active{% endif %}
+    </h2>
+    <div class="cards">
+        {% for card in game_state.player_hand.cards %}
+            {% include 'partials/card.html' %}
+        {% endfor %}
+    </div>
+    <p class="hand-value">Value: {{ game_state.player_hand.value }}</p>
+</div>
+
+<!-- Split Hand (if exists) -->
+{% if game_state.split_hand %}
+<div class="hand-section player-section split-hand-section">
+    <h2>Your Split Hand{% if game_state.active_hand == 'split' %} - Active{% endif %}</h2>
+    <div class="cards">
+        {% for card in game_state.split_hand.cards %}
+        {% include 'partials/card.html' %}
+        {% endfor %}
+    </div>
+    <p class="hand-value">Value: {{ game_state.split_hand.value }}</p>
+</div>
+{% endif %}

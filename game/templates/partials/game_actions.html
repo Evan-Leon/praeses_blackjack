@@ -1,0 +1,22 @@
+<!-- Result Message -->
+{% if game_state.game_over and game_state.result_message %}
+<div class="result-message">
+    {{ game_state.result_message }}
+</div>
+{% endif %}
+
+<!-- Actions -->
+<div class="actions">
+    {% if game_state.game_over %}
+    <form method="post" action="{% url 'new_game' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-new">New Game</button>
+    </form>
+    {% else %}
+    <button id="hit-btn" class="btn btn-primary">Hit</button>
+    <button id="stand-btn" class="btn btn-secondary">Stand</button>
+    {% if game_state.can_split %}
+    <button id="split-btn" class="btn btn-split">Split</button>
+    {% endif %}
+    {% endif %}
+</div>

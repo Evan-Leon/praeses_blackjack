@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+{% csrf_token %}
+
+<div id="game-area">
+    {% include 'partials/dealer_hand.html' %}
+    {% include 'partials/player_hand.html' %}
+    {% include 'partials/game_actions.html' %}
+</div>
+
+{% include 'partials/game_script.html' %}
+{% endblock %}

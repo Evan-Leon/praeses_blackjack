@@ -1,0 +1,60 @@
+<script>
+    const hitBtn = document.getElementById('hit-btn');
+    const standBtn = document.getElementById('stand-btn');
+    const splitBtn = document.getElementById('split-btn');
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    async function makeAction(action) {
+        const csrftoken = getCookie('csrftoken');
+
+        if (!csrftoken) {
+            console.error('CSRF token not found');
+            return;
+        }
+
+        try {
+            const response = await fetch(`/${action}/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': csrftoken,
+                },
+                credentials: 'same-origin'
+            });
+
+            if (response.ok) {
+                window.location.reload();
+            } else {
+                const errorText = await response.text();
+                console.error('Action failed:', errorText);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+    if (hitBtn) {
+        hitBtn.addEventListener('click', () => makeAction('hit'));
+    }
+
+    if (standBtn) {
+        standBtn.addEventListener('click', () => makeAction('stand'));
+    }
+
+    if (splitBtn) {
+        splitBtn.addEventListener('click', () => makeAction('split'));
+    }
+</script>

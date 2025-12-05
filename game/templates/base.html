@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Praeses Blackjack{% endblock %}</title>
+    {% load static %}
+    <link rel="icon" type="image/x-icon" href="{% static 'game/images/favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'game/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Praeses Blackjack</h1>
+            <h2>Developed by 
+                <a href="https://www.linkedin.com/in/evan-leon-737918211/" target="_blank">
+                Evan Leon
+                </a>
+            </h2>
+        </header>
+
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,10 @@
+<!-- Expects: card (dict with suit, rank, value) -->
+<div class="card {% if card.suit == 'Hearts' or card.suit == 'Diamonds' %}red{% else %}black{% endif %}">
+    <div class="card-rank">{{ card.rank }}</div>
+    <div class="card-suit">
+        {% if card.suit == 'Hearts' %}♥
+        {% elif card.suit == 'Diamonds' %}♦
+        {% elif card.suit == 'Clubs' %}♣
+        {% else %}♠{% endif %}
+    </div>
+</div>
